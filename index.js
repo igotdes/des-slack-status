@@ -32,7 +32,7 @@ app.post('/', (req, res, next) => {
   // grab status and emojis and clean it up
   let status = req.body.title;
   // additional tokens
-  const dndToken = 'Woo Chat';
+  const dndToken = '';
   // parse event start/stop time
   const dateFormat = 'MMM D, YYYY [at] hh:mmA';
   const start = moment(req.body.start, dateFormat);
@@ -47,12 +47,16 @@ app.post('/', (req, res, next) => {
       num_minutes: end.diff(start, 'minutes') - 2
     });
   }
-  var emoji = ':chat-green:'
-  if ( status.match('Reserve') ) {
+  var emoji = ':supernova:'
+  if ( status.match('Woo Chat') ) {
+   emoji = ':chat-green:';
+  }
+  
+  if ( status.match('Woo Chat Reserve') ) {
    emoji = ':happychat:';
   }
 
-  if ( status.match('Tickets') ) {
+  if ( status.match('Woo Tickets') ) {
    emoji = ':zendesk2:';
   }
   if ( status.match('Escalated') ) {
