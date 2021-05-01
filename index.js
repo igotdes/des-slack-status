@@ -57,6 +57,18 @@ app.post('/', (req, res, next) => {
   if (status.includes(awayToken)) {
     status = status.replace(awayToken, '').trim();
   }
+  // Common Statuses
+  if ( status.match('test') ) {
+   statusEmoji = ':ghostie:';
+  } else if ( status.match('Woo Chat') ) {
+   statusEmoji = ':chat-green:';
+  } else if ( status.match('Woo Chat Reserve') ) {
+   statusEmoji = ':happychat:';
+  } else if ( status.match('Woo Tickets') ) {
+   statusEmoji = ':zendesk2:';
+  } else {
+   statusEmoji = ':supernova:';
+  }
   // set status
   status = `${status} from ${start.format('h:mm')} to ${end.format('h:mm a')} ${process.env.TIME_ZONE}`;
   let profile = JSON.stringify({
