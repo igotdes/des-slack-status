@@ -39,8 +39,8 @@ app.post('/', (req, res, next) => {
   const awayToken = '[AWAY]';
   // parse event start/stop time
   const dateFormat = 'MMM D, YYYY [at] hh:mmA';
-  const start = moment(req.body.start, dateFormat);
-  const end = moment(req.body.end, dateFormat);
+  const start = moment.utc(req.body.start, dateFormat);
+  const end = moment.utc(req.body.end, dateFormat);
   // check for DND
   if (status.includes(dndToken)) {
     slack.dnd.setSnooze({
