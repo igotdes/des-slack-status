@@ -50,17 +50,12 @@ app.post('/', (req, res, next) => {
   var emoji = ':supernova:'
   if ( status.match('Woo Chat') ) {
    emoji = ':chat-green:';
-  }
-  
-  if ( status.match('Woo Chat Reserve') ) {
+  } else if ( status.match('Woo Chat Reserve') ) {
    emoji = ':happychat:';
-  }
-
-  if ( status.match('Woo Tickets') ) {
+  } else if ( status.match('Woo Tickets') ) {
    emoji = ':zendesk2:';
-  }
-  if ( status.match('Escalated') ) {
-   emoji = ':ohana:';
+  } else {
+   emoji = ':supernova:';
   }
   // set status
   status = `${status} from ${start.format('h:mm')} to ${end.format('h:mm a')} ${process.env.TIME_ZONE}`;
