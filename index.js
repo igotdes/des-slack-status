@@ -35,8 +35,8 @@ app.post('/', (req, res, next) => {
   const dndToken = '';
   // parse event start/stop time
   const dateFormat = 'MMM D, YYYY [at] hh:mmA';
-  const start = moment(req.body.start, dateFormat);
-  const end = moment(req.body.end, dateFormat);
+  const start = moment.utc(req.body.start, dateFormat);
+  const end = moment.utc(req.body.end, dateFormat);
   wizardStatusStartTime = end.diff(start, 'seconds') * 1000;
   // check for DND
   if (status.includes(dndToken)) {
@@ -63,7 +63,7 @@ app.post('/', (req, res, next) => {
    emoji = ':ohana:';
   }
   // set status
-  status = `${status} from ${start.format('h:mm')} to ${end.format('h:mm a')}`;
+  status = `${status} from ${start.format('h:mm')} to ${end.format('h:mm a')} ${process.env.TIME_ZONE}`;
   let profile = JSON.stringify({
     "status_text": status,
     "status_emoji": emoji,
