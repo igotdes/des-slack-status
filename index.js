@@ -41,6 +41,8 @@ app.post('/', (req, res, next) => {
   const dateFormat = 'MMM D, YYYY [at] hh:mmA';
   const start = moment(req.body.start, dateFormat);
   const end = moment(req.body.end, dateFormat);
+  const startUtc = moment(req.body.start, dateFormat).subtract(8, 'hours');
+  const endUtc = moment(req.body.end, dateFormat).subtract(8, 'hours');
   // check for DND
   if (status.includes(dndToken)) {
     slack.dnd.setSnooze({
@@ -70,7 +72,7 @@ app.post('/', (req, res, next) => {
    statusEmoji = ':supernova:';
   }
   // set status
-  status = `${status} from ${start.format('h:mm')} to ${end.format('h:mm a')} ${process.env.TIME_ZONE}`;
+  status = `${status} from ${startUtc.format('h:mm')} to ${endUtc.format('h:mm a')} ${process.env.TIME_ZONE}`;
   let profile = JSON.stringify({
     "status_text": status,
     "status_emoji": statusEmoji,
