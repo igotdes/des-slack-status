@@ -60,12 +60,14 @@ app.post('/', (req, res, next) => {
     status = status.replace(awayToken, '').trim();
   }
   // Common Statuses
-  if ( status.match('Woo Chat') ) {
-   statusEmoji = ':chat-green:';
-  } else if ( status.match('Woo Chat Reserve') ) {
+  if ( status.match('Woo Chat Reserve') ) {
    statusEmoji = ':happychat:';
+  } else if ( status.match('Woo Chat') ) {
+   statusEmoji = ':chat-green:';
   } else if ( status.match('Woo Tickets') ) {
    statusEmoji = ':zendesk2:';
+  } else if ( status.match('Woo Forums') ) {
+   statusEmoji = ':wpicon-black-light:';
   } else {
    statusEmoji = ':supernova:';
   }
