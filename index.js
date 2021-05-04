@@ -67,7 +67,7 @@ app.post('/', (req, res, next) => {
   } else if ( status.match('Woo Tickets') ) {
    statusEmoji = ':zendesk2:';
   } else if ( status.match('Woo Forums') ) {
-   statusEmoji = ':wpicon-black-light:';
+   statusEmoji = ':wporg:';
   } else {
    statusEmoji = ':supernova:';
   }
