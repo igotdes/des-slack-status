@@ -70,6 +70,12 @@ app.post('/', (req, res, next) => {
    statusEmoji = ':wpicon-black-light:';
   } else if ( status.match('Weekend') ) {
    statusEmoji = ':weekend-2:';
+  } else if ( status.match('Flex') ) {
+   statusEmoji = ':flexday:';
+  } else if ( status.match('LMAFK') ) {
+   statusEmoji = ':lmafk:';
+  } else if ( status.match('AFK') ) {
+   statusEmoji = ':afk:';
   } else {
    statusEmoji = ':supernova:';
   }
