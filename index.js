@@ -59,6 +59,20 @@ app.post('/', (req, res, next) => {
   if (status.includes(awayToken)) {
     status = status.replace(awayToken, '').trim();
   }
+  // Common Statuses
+  if ( status.match('Woo Chat Reserve') ) {
+   statusEmoji = ':happychat:';
+  } else if ( status.match('Woo Chat') ) {
+   statusEmoji = ':chat-green:';
+  } else if ( status.match('Woo Tickets') ) {
+   statusEmoji = ':zendesk2:';
+  } else if ( status.match('Woo Forums') ) {
+   statusEmoji = ':wpicon-black-light:';
+  } else if ( status.match('Weekend') ) {
+   statusEmoji = ':weekend-2:';
+  } else {
+   statusEmoji = ':supernova:';
+  }
   // set status
   status = `${status} from ${startUtc.format('h:mm')} to ${endUtc.format('h:mm a')} ${process.env.TIME_ZONE}`;
   let profile = JSON.stringify({
@@ -72,21 +86,6 @@ app.post('/', (req, res, next) => {
   res.status(200);
   res.send('🤘');
 });
-  // Common Statuses
-  if ( status.match('Woo Chat Reserve') ) {
-   statusEmoji = ':happychat:';
-  } else if ( status.match('Woo Chat') ) {
-   statusEmoji = ':chat-green:';
-  } else if ( status.match('Woo Tickets') ) {
-   statusEmoji = ':zendesk2:';
-  } else if ( status.match('Woo Forums') ) {
-   statusEmoji = ':wpicon-black-light:';
-  } else if ( status.match('Weekend') ) {
-   statusEmoji = ':weekend-2:';
-   status = '';
-  } else {
-   statusEmoji = ':supernova:';
-  }
 app.get('/', (req, res, next) => {
   // welcome message
   res.send(`
