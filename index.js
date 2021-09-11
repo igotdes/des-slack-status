@@ -37,6 +37,7 @@ app.post('/', (req, res, next) => {
   // additional tokens
   const dndToken = '[DND]';
   const awayToken = '[AWAY]';
+  const aways = [awayToken, 'AFK', 'LMAFK'];
   // parse event start/stop time
   const dateFormat = 'MMM D, YYYY [at] hh:mmA';
   const start = moment(req.body.start, dateFormat);
@@ -54,7 +55,7 @@ app.post('/', (req, res, next) => {
   // check for AWAY
   slack.users.setPresence({
     token,
-    presence: status.includes(awayToken) ? 'away' : 'auto'
+    presence: aways.some(e => status.includes(e)) ? 'away' : 'auto'
   });
   if (status.includes(awayToken)) {
     status = status.replace(awayToken, '').trim();
