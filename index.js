@@ -27,7 +27,7 @@ app.post('/', (req, res, next) => {
   console.log(req.body);
   // grab status and emojis and clean it up
   let status = req.body.title;
-  let statusEmoji = ':supernova:';
+  let statusEmoji = ':moo:';
   const statusHasEmoji = emojiRegex().exec(status);
   if (statusHasEmoji) {
     statusEmoji = nodeEmoji.unemojify(statusHasEmoji[0]);
@@ -61,7 +61,9 @@ app.post('/', (req, res, next) => {
     status = status.replace(awayToken, '').trim();
   }
   // Common Statuses
-  if ( status.match('Woo Chat Reserve') ) {
+  if ( status.match('Pocket Casts') ) {
+   statusEmoji = ':party-casts:';
+  } else if ( status.match('Woo Chat Reserve') ) {
    statusEmoji = ':happychat:';
   } else if ( status.match('Woo Chat') ) {
    statusEmoji = ':chat-green:';
@@ -78,7 +80,7 @@ app.post('/', (req, res, next) => {
   } else if ( status.match('AFK') ) {
    statusEmoji = ':afk:';
   } else {
-   statusEmoji = ':supernova:';
+   statusEmoji = ':moo:';
   }
   // set status
   status = `${status} from ${startUtc.format('h:mm')} to ${endUtc.format('h:mm a')} ${process.env.TIME_ZONE}`;
